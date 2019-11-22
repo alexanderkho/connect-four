@@ -8,16 +8,3 @@ const Piece = (props) => {
 };
 
 export default Piece;
-
-// class Piece extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.toggle = props.toggle;
-//     }
-
-//     render() {
-//         return (
-//             <div className="piece" onClick={}></div>
-//         )
-//     }
-// }

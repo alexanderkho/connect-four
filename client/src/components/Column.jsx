@@ -1,20 +1,13 @@
 import Piece from './Piece.jsx';
 
-class Column extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            this.props.pieces.map((piece) => {
-                return (
-                    <Piece active={piece} />
-                
-                )
-            })
-        )
-    }
+const Column = (props) => {
+    return (
+        props.pieces.map((piece, i) => {
+            return (
+                <Piece active={piece} key={i}/>
+            )
+        })
+    )
 }
 
 export default Column;
