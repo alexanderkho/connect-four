@@ -7,7 +7,10 @@ const GameInfo = (props) => {
             </p>
             {
                 props.winner === null ? null
-                : <h2 className={props.winner}>{props.winner} Wins!</h2>
+                : <div>
+                    <h2 className={props.winner}>{props.winner} Wins!</h2>
+                    <button onClick={() =>{window.location.reload()}}>Play Again?</button>
+                     </div>
             }
         </div>
     )

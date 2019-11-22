@@ -24,20 +24,22 @@ class Board extends React.Component {
     }
 
     toggleColumn(colIndex) {
-        //red piece: 1, black piece: 2
-        const newPiece = this.state.redActive === true ? 1 : 2;
-        let newCols = Array.from(this.state.columns);
-        // const bottomPiece = newCols[colIndex].indexOf(1);
-        const bottomPiece = newCols[colIndex].findIndex((n) => n!== 0);
-        if (bottomPiece !== -1) {
-            newCols[colIndex][bottomPiece - 1] = newPiece;
+        if (this.state.columns[colIndex][0] !== 0) {
+            alert('Invalid Move >:(')
         } else {
-            newCols[colIndex][newCols[colIndex].length - 1] = newPiece;
+            const newPiece = this.state.redActive === true ? 1 : 2;
+            let newCols = Array.from(this.state.columns);
+            const bottomPiece = newCols[colIndex].findIndex((n) => n!== 0);
+            if (bottomPiece !== -1) {
+                newCols[colIndex][bottomPiece - 1] = newPiece;
+            } else {
+                newCols[colIndex][newCols[colIndex].length - 1] = newPiece;
+            }
+            this.setState({
+                redActive: !this.state.redActive,
+                columns: newCols
+            }, this.checkBoard());
         }
-        this.setState({
-            redActive: !this.state.redActive,
-            columns: newCols
-        }, this.checkBoard());
     }
 
     checkBoard() {
@@ -47,6 +49,7 @@ class Board extends React.Component {
             this.setState({
                 winner: winner
             });
+            this.toggleColumn = () => {};
         }
     }
 

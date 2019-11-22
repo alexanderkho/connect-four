@@ -186,16 +186,3 @@ const checkWholeBoard = (board) => {
 
 
 export default checkWholeBoard;
-
-//Test Cases
-// var testBoard = [
-//     [0,0,0,0,0,0],
-//     [1,1,1,1,0,0],
-//     [0,0,0,0,0,0],
-//     [0,0,0,0,0,0],
-//     [0,0,0,0,0,0],
-//     [0,0,0,0,0,0],
-//     [0,0,0,0,0,0]
-// ]
-
-// console.log(checkOneColumn(testBoard,1))
