@@ -1,5 +1,6 @@
 import Column from './Column.jsx';
 import GameInfo from './GameInfo.jsx';
+import checkWholeBoard from '../boardChecker.js';
 
 
 class Board extends React.Component {
@@ -7,6 +8,7 @@ class Board extends React.Component {
         super(props);
         this.state = {
             redActive: true, 
+            winner: null,
             columns : [
                 [0,0,0,0,0,0],
                 [0,0,0,0,0,0],
@@ -18,12 +20,12 @@ class Board extends React.Component {
             ]
         }
         this.toggleColumn = this.toggleColumn.bind(this);
+        this.checkBoard = this.checkBoard.bind(this);
     }
 
     toggleColumn(colIndex) {
         //red piece: 1, black piece: 2
         const newPiece = this.state.redActive === true ? 1 : 2;
-        console.log('toggling column!' + colIndex)
         let newCols = Array.from(this.state.columns);
         // const bottomPiece = newCols[colIndex].indexOf(1);
         const bottomPiece = newCols[colIndex].findIndex((n) => n!== 0);
@@ -35,13 +37,25 @@ class Board extends React.Component {
         this.setState({
             redActive: !this.state.redActive,
             columns: newCols
-        });
+        }, this.checkBoard());
+    }
+
+    checkBoard() {
+        const winResult = checkWholeBoard(this.state.columns);
+        if (winResult) {
+            const winner = winResult[0] === 1 ? 'Red' : 'Black'
+            this.setState({
+                winner: winner
+            });
+        }
     }
 
     render() {
-        console.log(this.state.columns);
         return (<div className="board">
-            <GameInfo redActive={this.state.redActive} />
+            <GameInfo 
+            redActive={this.state.redActive} 
+            winner={this.state.winner}
+            />
             {
                 this.state.columns.map((column, i) => {
                     return (<div className="column" key={i} onClick={() => {this.toggleColumn(i)}}>
