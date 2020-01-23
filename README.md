@@ -1,6 +1,8 @@
 # Connect Four
 This is a simple connect-four app built with React.js. 
 
+<img src="https://i.ibb.co/m8cSBnS/Connect-Four.jpg" alt="Connect Four Gameplay" width="50%" /> 
+
 You can build & run this application locally via the following commands:
 
 ```
